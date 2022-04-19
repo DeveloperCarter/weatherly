@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}<title>Weatherly | Home</title>{% endblock %}
+{% block addstyles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Weatherly</h1>
+        <p class="lead">Find the current weather in your area, hassle free.</p>
+        <hr class="my-4">
+    </div>
+</div>
+
+<div class="container" id="home-div">
+    {% if home_name %}
+    <div class="card position-relative" id="sign-up" style="width: 70%;">
+        <h2 class="display-5 text-center" id="weather-header">
+            {% if ends_with_s %}
+            {{home_name}}' Weather
+            {% else %}
+            {{home_name}}'s Weather
+            {% endif %}
+        </h2>
+        <br>
+        <div class="row">
+            <div class="col-sm text-center lead">Temperature</div>
+            <div class="col-sm text-center lead">Conditions</div>
+            <div class="col-sm text-center lead">Feels Like</div>
+        </div>
+        <div class="row">
+            <div class="col-sm text-center">{{home_temp}}°</div>
+            <div class="col-sm text-center">{{home_weath}}</div>
+            <div class="col-sm text-center">{{home_feels_like}}°</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm text-center lead">High</div>
+            <div class="col-sm text-center lead">Low</div>
+            <div class="col-sm text-center lead">Wind Speed</div>
+        </div>
+        <div class="row">
+            <div class="col-sm text-center">{{home_temp_max}}°</div>
+            <div class="col-sm text-center">{{home_temp_min}}°</div>
+            <div class="col-sm text-center">{{home_wind_speed}} MPH</div>
+        </div>
+        <a class="text-center" href="/location/{{user_zip}}">Full Weather Information</a>
+    </div>
+    {% else %}
+    <div class="card position-relative" id="right-el" style="width: 70%;">
+        <h2 class="display-5 text-center" id="weather-header">
+            Sign up and include your zip code to see your areas weather here!
+        </h2>
+        <br>
+        <div class="row">
+            <div class="col-sm text-center lead">Temperature</div>
+            <div class="col-sm text-center lead">Conditions</div>
+            <div class="col-sm text-center lead">Feels Like</div>
+        </div>
+        <div class="row">
+            <div class="col-sm text-center">0°</div>
+            <div class="col-sm text-center">Windy</div>
+            <div class="col-sm text-center">0°</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm text-center lead">High</div>
+            <div class="col-sm text-center lead">Low</div>
+            <div class="col-sm text-center lead">Wind Speed</div>
+        </div>
+        <div class="row">
+            <div class="col-sm text-center">0°</div>
+            <div class="col-sm text-center">0°</div>
+            <div class="col-sm text-center">0 MPH</div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="card" id="left-el" style="width: 25%;">
+        <div class="card-header">
+            Popular Areas
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for loc in top_locs %}
+            <li class='list-group-item'><a href="/location/{{loc.zip_code}}">{{loc.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

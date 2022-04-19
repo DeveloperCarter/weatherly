@@ -1,0 +1,6 @@
+	COLUMNS	
+TABLES	users		locations
+	username	zip code
+	hashed_pw	# of times searched
+	zip code	loc_id
+	user_id	

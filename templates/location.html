@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}<title>Weatherly | {{existing_loc.name}}</title>{% endblock %}
+{% block content %}
+<h1 class='display-2 text-center'>
+    {% if ends_with_s %}
+    {{existing_loc.name}}' Weather
+    {% else %}
+    {{existing_loc.name}}'s Weather
+    {% endif %}
+</h1>
+
+<div class="container pt-5">
+    <div class="card location-card">
+        <div class="row text-center">
+            <div class="col-sm">
+                <h3 class="display-6 lead text-center">Temperature</h3>
+                <p>{{temp}}°</p>
+            </div>
+            <div class="col-sm">
+                <h3 class="display-6 lead text-center">Conditions</h3>
+                <p>{{weath}}</p>
+            </div>
+            <div class="row">
+                <div class="col-sm lead text-center">Feels Like</div>
+                <div class="col-sm lead text-center">Today's High</div>
+                <div class="col-sm lead text-center">Today's Low</div>
+            </div>
+            <div class="row">
+                <div class="col-sm">{{feels_like}}°</div>
+                <div class="col-sm">{{temp_max}}°</div>
+                <div class="col-sm">{{temp_min}}°</div>
+            </div>
+            <div class="row">
+                <div class="col-sm lead text-center">Wind Speed</div>
+                <div class="col-sm lead text-center">Humidity</div>
+                <div class="col-sm lead text-center">Visibility</div>
+            </div>
+            <div class="row">
+                <div class="col-sm">{{wind_speed}} MPH</div>
+                <div class="col-sm">{{humidity}}%rh</div>
+                <div class="col-sm">{{visibility}} Meters</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Weatherly</title>{% endblock %}
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/popper"></script>
+    <script src="https://unpkg.com/bootstrap"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    {% block addstyles %}
+    {% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-expand">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">
+                <img src="/static/images/logo.jpg" alt="logo">
+                <span class="text-dark">Weatherly</span>
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            {% if request.endpoint != None %}
+            <li>
+                <form class="navbar-form navbar-right" action="/location">
+                    <input name="search" id="zip-search" class="" placeholder="Search with zip code">
+                    <button class="btn btn-default">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </form>
+            </li>
+            {% endif %}
+            {% if not g.user %}
+            <li><a class="text-dark" href="/signup">Sign up</a></li>
+            <li><a class="text-dark" href="/login">Log in</a></li>
+            {% else %}
+            <li>
+                <a href="/editprofile">
+                    <img src="{{ g.user.image_url }}" alt="{{ g.user.username }}">
+                </a>
+            </li>
+            <li><a href="/logout">Log out</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<div id="wrap">
+    <div id="main">
+{% block content %}
+{% endblock %}
+    </div>
+</div>
+<footer id="footer" class="footer-class text-center text-white" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+  
+        <!-- Twitter -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-twitter"></i
+        ></a>
+  
+        <!-- Google -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-google"></i
+        ></a>
+  
+        <!-- Instagram -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href=""
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <!-- Linkedin -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="https://www.linkedin.com/in/carter-brown-488882203/"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <!-- Github -->
+        <a
+          class="btn btn-link btn-floating btn-lg text-dark m-1"
+          href="https://github.com/DeveloperCarter"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+      <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3">
+      © 2022 Copyright:
+      <a class="text-dark" href="">Carter Brown Web Solutions</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+</body>
+</html>
